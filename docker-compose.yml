@@ -1,0 +1,23 @@
+version: '3.8'
+services: 
+  nuxt:
+    build:
+      context: nuxt/docker
+      dockerfile: Dockerfile
+    working_dir: /workspace
+    tty: true
+    volumes:
+      - ./nuxt/src:/workspace
+    ports:
+      - 3000:3000
+    command: npm run dev
+
+  go:
+    build:
+      context: go/docker
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+       - ./go/src/app:/go/src/app
+    ports:
+      - 8080:8080
